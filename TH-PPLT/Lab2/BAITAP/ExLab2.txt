@@ -1,0 +1,30 @@
+1. Viết chương trình C để in tổng của tất cả các số chẵn từ I đến n bằng cách sử dụng vòng lặp ba
+ cấu trúc. Xác thực đầu vào, trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+2. Viết chương trình C để in ra tổng của tất cả các số lẻ từ 1 đến n bằng cách sử dụng ba vòng lặp
+ cấu trúc. Xác thực đầu vào, trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+3. Viết chương trình C để in bảng một số bất kỳ.
+4. Viết chương trình C để nhập một số bất kỳ và tính tổng tất cả các số tự nhiên giữa
+  I to n bằng cách sử dụng ba cấu trúc vòng lặp. Xác thực đầu vào, trong trường hợp đầu vào không chính xác,
+ nhắc người dùng nhập lại.
+5. Viết chương trình C để tìm chữ số đầu tiên và chữ số cuối của một số bất kỳ.
+6. Viết chương trình C để tính tổng các chữ số của một số bất kỳ.
+7. Viết chương trình C để tính tích các chữ số của một số bất kỳ.
+8. Viết chương trình C để đếm số chữ số trong một số bất kỳ.
+9. Viết chương trình C để hoán đổi chữ số đầu và chữ số cuối của một số bất kỳ.
+10. Viết chương trình C để nhập một số bất kỳ và in ra số ngược lại của nó.
+11. Viết chương trình C để nhập bất kỳ số nào và kiểm tra xem số đó là palindrome hay
+ không phải.
+12. Viết chương trình C để kiểm tra một số có phải là số Nguyên tố hay không. Xác thực đầu vào,
+ trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+13. Viết chương trình C để kiểm tra một số có phải là số Armstrong hay không.
+14. Viết chương trình C để kiểm tra một số có phải là Số hoàn hảo hay không.
+15. Viết chương trình C để in tất cả các số Nguyên tố từ I đến n bằng cách sử dụng cấu trúc ba vòng lặp.
+    Xác thực đầu vào, trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+16. Viết chương trình C để in tất cả các số Armstrong từ 1 đến n bằng cách sử dụng ba vòng lặp
+    cấu trúc. Xác thực đầu vào, trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+17. Viết chương trình C để in tất cả các số Hoàn hảo từ 1 đến n bằng cách sử dụng vòng lặp ba
+    cấu trúc. Xác thực đầu vào, trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+18. Viết chương trình C để chuyển hệ số Decimal sang Binary.
+19. Viết chương trình C để tính giai thừa của n. Xác thực đầu vào, trong trường hợp đầu vào
+    không đúng, hãy nhắc người dùng nhập lại.
+                                          n! = 1.2.3. n(n >0) 

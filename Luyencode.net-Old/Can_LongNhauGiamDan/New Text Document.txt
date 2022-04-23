@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+double Sn(int n) {
+    double ans = sqrt(n);
+    for (int i = n - 1; i >= 1; i--) 
+        ans = sqrt(i + ans);
+    return ans;
+}
+int main() {
+    int t = 0;
+    int n = 0;
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        cout << fixed << setprecision(5) << Sn(n) << endl;
+    }
+    return 0;
+}

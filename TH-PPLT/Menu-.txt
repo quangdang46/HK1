@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+    printf("=======MENU======");
+    printf("0.Thoat\n");
+    printf("1.Bai 1:\n");
+    printf("2.Bai 2:\n");
+    printf("3.Bai 3:\n");
+    printf("4.Bai 4:\n");
+    printf("5.Bai 5:\n");
+    printf("6.Bai 6:\n");
+    printf("7.Bai 7:\n");
+    printf("8.Bai 8:\n");
+    printf("9.Bai 9:\n");
+    printf("10.Bai 10:\n");
+    printf("11.Bai 11\n");
+    printf("12.Bai 12\n");
+    printf("13.Bai 13\n");
+    printf("14.Bai 14\n");
+    printf("15.Bai 15\n");
+    printf("16.Bai 16\n");
+    int luachon;
+    printf("Chon chuong trinh muon chay: ");scanf("%d",&luachon);
+    switch(luachon){
+        case 0:break;
+        case 1:{
+            break;
+        }
+        case 2:{
+            break;
+        }
+        case 3:{
+            break;
+        }
+        case 4:{
+            break;
+        }
+        case 5:{
+            break;
+        }
+        case 6:{
+            break;
+        }
+        case 7:{
+            break;
+        }
+        case 8:{
+            break;
+        }
+        case 9:{
+            break;
+        }
+        case 10:{
+            break;
+        }
+        case 11:{
+            break;
+        }
+        case 12:{
+            break;
+        }
+        case 13:{
+            break;
+        }
+        case 14:{
+            break;
+        }
+        case 15:{
+
+        }
+        case 16:{
+            break;
+        }
+        default:
+    }
+
+}

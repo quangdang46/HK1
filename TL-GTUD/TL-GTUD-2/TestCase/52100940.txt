@@ -1,0 +1,18 @@
+ID-snowflake: 0 
+n: 2 
+d: 5 
+I: F-F-F-F-F-F-F-F 
+F = F---F+F+F+F+F+F+F---F 
+scale: 8 
+alpha0: 0.00 
+alpha: 45.00 
+x0: 0.00  y0: 0.00 
+ID-Tree: 4 
+n: 4 
+d: 10 
+I: X 
+X= F[+X]F[-X]+Xo 
+F= FF 
+alpha0: 90.00 
+alpha: 20.00 
+x0: -10.00  y0: -10.00 

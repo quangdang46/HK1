@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "+//Silmaril//DTD HTML Pro v0r11 19970101//EN">
+<!-- saved from url=(0045)http://www.ece.lsu.edu/ee4720/2014/lfp.s.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>lfp.s</title>
+  </head>
+  <body text="#000000" bgcolor="#ffffff">
+    <pre><span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">LSU EE 4720 -- Spring 2014 -- Computer Architecture</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">MIPS Floating Point</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Time-stamp: &lt;22 January 2014, 15:00:04 CST, koppel@sky.ece.lsu.edu&gt;
+</span>
+<span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">Contents</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS Floating-Point Instructions
+</span>
+<span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">Objectives</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Floating Point
+</span><span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">Read and write MIPS programs using floating point instructions.
+</span>
+
+<span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">Differences Between FP and Integer Instructions</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+<span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">o  Separate set of registers. (f0-f31)
+</span><span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">o  Separate instructions to operate on those registers ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">... for arithmetic (add) ...
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">... and loads and stores.
+</span><span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">o  Need for format conversion.
+</span>
+
+<span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">Registers</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span> <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">MIPS Registers</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#        </span><span style="color:#9a0000;font-size:10.0pt;">MIPS has four sets of coprocessor registers.
+</span><span style="color:#9a0000;font-size:10.0pt;">#        </span><span style="color:#9a0000;font-size:10.0pt;">The integer (GPR) registers are NOT one of the four sets.
+</span><span style="color:#9a0000;font-size:10.0pt;">#        </span><span style="color:#9a0000;font-size:10.0pt;">Each set has 32 registers.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#          </span><span style="color:#9a0000;font-size:10.0pt;">Co-processor 0: Processor and system control.
+</span><span style="color:#9a0000;font-size:10.0pt;">#          </span><span style="color:#9a0000;font-size:10.0pt;">Co-processor 1: MIPS-32 floating-point
+</span><span style="color:#9a0000;font-size:10.0pt;">#          </span><span style="color:#9a0000;font-size:10.0pt;">Co-processor 2: Reserved for special-purpose designs.
+</span><span style="color:#9a0000;font-size:10.0pt;">#          </span><span style="color:#9a0000;font-size:10.0pt;">Co-processor 3: MIPS-64 floating-point
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Separate Floating Point Registers</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">A feature of many RISC ISAs.
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Eases implementation.
+</span>
+
+<span style="color:#9a0000;font-size:10.0pt;">################################################################################</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#000000;font-size:15.0pt;font-family:sans-serif;font-weight:bold;">Floating Point Summary</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Representation of Floating-Point Numbers</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">IEEE 754 Single- and Double-Precision FP Numbers
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Why IEEE 754?
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">Like the metric system ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">.. it's a good standard ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">.. but much more importantly:  many others use it.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">Data files containing FP numbers can be shared
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">.. with other systems that implement IEEE 754 ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">.. without conversion (except for byte order).
+</span>
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Coprocessor 1 and The Floating-Point Registers</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Floating point handled by co-processor 1, one of 4 co-processors.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">MIPS floating point registers also called co-processor 1 registers.
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">MIPS floating point instructions called co-processor 1 instructions.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Registers named f0-f31.
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Each register is 32 bits.  (For MIPS-32)
+</span>
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Coprocessor 1 Instructions</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Coprocessor 1 instructions use coprocessor 1 (FP) registers.
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">This includes instructions that do FP arithmetic ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">.. and other types of instructions.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Many coprocessor 1 instructions have "c1" in their names ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">.. for example, lwc1.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Coprocessor 1 *arithmetic* instructions *do not* have c1 in their names ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">.. but they include a /completer/ that indicates data type ..
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">.. for example, add.d, where ".d" is the completer.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Completers:
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">".s"  Single-Precision Floating Point (32 bits)
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">".d"  Double-Precision Floating Point (64 bits)
+</span><span style="color:#9a0000;font-size:10.0pt;">#     </span><span style="color:#9a0000;font-size:10.0pt;">".w"  Integer (32 bits)
+</span>
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Double-Precision Operands</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">In MIPS-32 (including MIPS-I) FP registers are 32 bits.
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Instructions with ".d" operands get each operand from a pair of regs.
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">Register numbers must be even.
+</span>
+<span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#999999;font-size:10.0pt;">:</span><span style="color:#228b22;font-size:10.0pt;font-weight:bold;">Example</span><span style="color:#999999;font-size:10.0pt;">:</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+        <span style="color:#4169e1;font-size:10.0pt;">add.d</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f2</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f4</span>  <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">{$f0,$f1} = { $f2, $f3 } + { $f4, $f5 }
+</span>        <span style="color:#4169e1;font-size:10.0pt;">add.d</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f2</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f5</span>  <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">ILLEGAL in MIPS 32, because f5 is odd.
+</span>
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Immediate Operands and Constant Registers</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">MIPS FP instructions do not take immediate values.
+</span>        <span style="color:#4169e1;font-size:10.0pt;">addi</span>.s <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f1</span>, 2.3   <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">ILLEGAL, no immediate FP instructions.
+</span>
+<span style="color:#9a0000;font-size:10.0pt;">#   </span><span style="color:#9a0000;font-size:10.0pt;">There is no counterpart of integer register 0 ($0 aka r0 aka $zero).
+</span>        <span style="color:#4169e1;font-size:10.0pt;">add.s</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f1</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f2</span>    <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">f0 has the sum,
+</span>
+
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Types of Floating-Point Instructions</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Briefly here, in detail later.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span> <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Arithmetic Operations</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Add double-precision (64-bit) operands.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS:  add.d $f0, $f2, $f4
+</span>
+
+<span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span> <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Load and Store</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Load double (eight bytes into two consecutive registers).
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS:  ldc1 $f0, 8($t0)
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span> <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Move Between Register Files (E.g., integer to FP)</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS:  mtc1   $t0, $f0
+</span>
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Format Conversion</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Convert from one format to another, e.g., integer to double.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS:  cvt.d.w  $f0, $f2
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span> <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Floating Point Condition Code Setting</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Compare and set condition code.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS:  c.gt.d $f0, $f2
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span> <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Conditional Branch</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Branch on floating-point condition.
+</span><span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span><span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS:  bc1f TARGET   # Branch coprocessor 1 [condition code] false.
+</span>
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">FP Load and Store</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Load word in to coprocessor 1
+</span>        <span style="color:#4169e1;font-size:10.0pt;">lwc1</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, 4(<span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">t4</span>)   <span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">$f0 = Mem[ $t4 + 4 ]
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Load double in to coprocessor 1
+</span>        <span style="color:#4169e1;font-size:10.0pt;">ldc1</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, 0(<span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">t4</span>)   <span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">$f0 = Mem[ $t4 + 0 ];  $f1 = Mem[ $t4 + 4 ]
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Store word from coprocessor 1.
+</span>        <span style="color:#4169e1;font-size:10.0pt;">swc1</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, 4(<span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">t4</span>)   <span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">$f0 = Mem[ $t4 + 4 ]
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Store double from coprocessor 1.
+</span>        <span style="color:#4169e1;font-size:10.0pt;">sdc1</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, 0(<span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">t4</span>)   <span style="color:#9a0000;font-size:10.0pt;">#  </span><span style="color:#9a0000;font-size:10.0pt;">Mem[ $t4 + 0 ] = $f0;  Mem[ $t4 + 4 ] = $f1
+</span>
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Move Instructions</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Move to coprocessor 1
+</span>        <span style="color:#4169e1;font-size:10.0pt;">mtc1</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">t0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>      <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">f0 = t0   Note that destination is *second* reg.
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Move from coprocessor 1.
+</span>        <span style="color:#4169e1;font-size:10.0pt;">mfc1</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">t0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>
+
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Data Type Conversion</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Convert between floating-point and integer formats.
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">NOTE: Values don't convert automatically, need to use these insn.
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">To: s, d, w;  From: s, d, w
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">cvt.TO.FROM fd, fs
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#4169e1;font-size:10.0pt;">cvt.d.w</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f2</span>     <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">$f0 = convert_from_int_to_double( $f2 )
+</span>
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">Setting Condition Codes</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">In preparation for a branch, set cond code based on FP comparison.
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Compare:   fs COND ft
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">COND: eq, gt, lt, le, ge
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">FMT: s, d
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">c.COND.FMT fs, ft
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Sets condition code to true or false.
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Condition is false if either operand is not a number.
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#4169e1;font-size:10.0pt;">c.lt.d</span> <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f2</span>    <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">CC = $f0 &lt; $f2
+</span>        <span style="color:#4169e1;font-size:10.0pt;">bc1t</span> TARG          <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Branch if $f0 &lt; $f2
+</span>        <span style="color:#4169e1;font-size:10.0pt;font-style:italic;">nop</span>
+        c.ge.d <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f0</span>, <span style="color:#2f4f4f;font-size:10.0pt;">$</span><span style="color:#b8860b;font-size:10.0pt;">f2</span>    <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">CC = $f0 &gt;= $f2
+</span>        <span style="color:#4169e1;font-size:10.0pt;">bc1t</span> TARG2          <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Branch if $f0 &lt; $f2
+</span>        <span style="color:#4169e1;font-size:10.0pt;font-style:italic;">nop</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Reachable?
+</span>
+
+ <span style="color:#9a0000;font-size:10.0pt;">## </span><span style="color:#9a0000;font-size:10.0pt;font-family:sans-serif;font-weight:bold;">FP Branches</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>
+        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">MIPS
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#9a0000;font-size:10.0pt;"># </span><span style="color:#9a0000;font-size:10.0pt;">Branch insn specifies whether CC register true or false.
+</span>        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#4169e1;font-size:10.0pt;">bc1t</span> TARG
+        <span style="color:#4169e1;font-size:10.0pt;font-style:italic;">nop</span>
+        <span style="color:#9a0000;font-size:10.0pt;">#</span><span style="color:#9a0000;font-size:10.0pt;">
+</span>        <span style="color:#4169e1;font-size:10.0pt;">bc1f</span> TARG
+        <span style="color:#4169e1;font-size:10.0pt;font-style:italic;">nop</span>
+</pre>
+  
+
+</body></html>

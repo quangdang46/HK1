@@ -1,0 +1,10 @@
+n = int(input())
+a = list(map(int,input().split()))
+dd = [0]*100001
+for i in range(n) :
+    dd[a[i]] += 1
+res = a[0]
+for i in range(1,n) :
+    if(dd[res]<dd[a[i]]) :
+        res = a[i]
+print(res,dd[res])

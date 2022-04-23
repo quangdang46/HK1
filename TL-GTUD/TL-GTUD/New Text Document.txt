@@ -1,0 +1,45 @@
+def req1(f, g, a):  ## KHONG XOA 
+    ###tinh toan thong thuong 
+    check = [True,True,True,True]
+    try:
+        if(f == float(f)):
+            x_3 = None
+            check[2] = False
+    except:
+        x_3 = f.subs(x,g)
+    
+    try:
+        if(g == float(g)):
+            x_4 = None
+            check[3] = False
+    except:
+        x_4 = f/g
+    if(check[2] == False and check[3] == False):
+        return (0,0,None,None)
+    x_1= f+g
+    x_2= f*g
+    rs = [x_1,x_2,x_3,x_4]
+    ###loai bo so ao va cac truong hop ko ton tai hoac vo han
+    for i in range(4):   
+        if(check[i] == False):
+            continue
+        l = limit((rs[i] - rs[i].subs(x,a)) / (x - a),x,a,'+')
+        r = limit((rs[i] - rs[i].subs(x,a)) / (x - a),x,a,'-')
+        if(l == r):   
+            rs[i] = l 
+            ###loai bo so ao
+            if(rs[i].is_real == False or rs[i].is_real == None):   
+                rs[i] = None
+            ###loai bo ko ton tai hoac vo han
+            if(rs[i]== nan or rs[i]==zoo):
+                rs[i] = None         
+        else:
+            rs[i] = None
+    
+        ### chinh so dep
+        if(rs[i] != None):
+            rs[i] = round(rs[i],2)
+            if(rs[i] == int(rs[i])):
+                rs[i] = int(rs[i])
+                
+    return tuple(rs)

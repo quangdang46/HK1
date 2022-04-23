@@ -1,0 +1,34 @@
+2. Viết hàm C để nhập bất kỳ số nào và kiểm tra xem số đó có phải là palindrome hay không
+    không phải.
+3. Viết hàm C để kiểm tra một số có phải là số Nguyên tố hay không. Xác thực đầu vào,
+    trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+4. Viết hàm C để kiểm tra một số có phải là số Amstrong hay không.
+5. Viết hàm C để kiểm tra xem một số có phải là Số hoàn hảo hay không.
+6. Viết hàm C để in tất cả các số Nguyên tố từ 1 đến n. Xác thực đầu vào, trong trường hợp
+    đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+7. Viết hàm C để in tất cả các số Armstrong từ 1 đến n. Xác thực đầu vào, trong
+    trong trường hợp đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+8. Viết hàm C để in tất cả các số Hoàn hảo từ 1 đến n. Xác thực đầu vào, trong trường hợp
+     đầu vào không chính xác, hãy nhắc người dùng nhập lại.
+9. Viết hàm C để chuyển hệ thập phân sang hệ số Nhị phân.
+10. Viết chương trình C để chuyển ngày thành năm, tuần và ngày.
+11. Viết hàm tìm số lớn nhất của một mảng số nguyên.
+12. Viết hàm tìm số nhỏ nhất của một mảng số nguyên.
+13. Viết hàm tính tổng tất cả các số của một mảng số nguyên.
+14. Viết hàm tính tổng tất cả các số không dương của một mảng số nguyên.
+15. Viết hàm tính tổng tất cả các số chẵn của một mảng số nguyên.
+16. Viết hàm đảo ngược một mảng mà không cần sử dụng bất kỳ mảng tạm thời nào.
+17. Viết chương trình xóa một phần tử khỏi mảng tại vị trí xác định.
+18. Viết chương trình đếm tổng số phần tử trùng lặp trong một mảng.
+19. Viết chương trình xóa tất cả các phần tử trùng lặp khỏi một mảng.
+20. Viết chương trình đếm tần số của từng phần tử trong mảng.
+21. Viết chương trình gộp hai mảng thành mảng thứ ba.
+22. Viết chương trình xếp các phần tử chẵn và lẻ của mảng thành hai mảng mới riêng biệt.
+23. Viết chương trình tìm kiếm một phần tử trong mảng bằng cách cung cấp giá trị khóa.
+24. (*) Viết chương trình sắp xếp các phần tử của mảng theo thứ tự tăng dần.
+25. Viết chương trình cộng hai ma trận.
+26. Viết chương trình trừ hai ma trận.
+27. Viết chương trình nhân hai ma trận.
+28. Viết chương trình kiểm tra hai ma trận có bằng nhau hay không.
+29. Viết chương trình tìm chuyển vị của ma trận.
+30. Viết chương trình tìm định thức của ma trận.

@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+int chon, chon2;
+int main() {
+do{
+	printf("Chao mung ban den voi chuoi cac chuong trinh\n");
+	printf("Vui long nhap so tuong ung voi chuong trinh de chay\n");
+	printf("=======Menu=======\n");
+	printf("0.Thoat\n");
+	printf("1  Chuong trinh 1\n");
+	printf("2. Chuong trinh 2\n");
+	printf("3. Chuong trinh 3\n");
+	printf("Chon truong trinh muon chay:");
+	scanf("%d", &chon);
+	switch (chon) {
+	case 1: {
+		printf("Chuong trinh1\n");
+		break;
+		}
+	case 2: {
+		printf("Chuong trinh2\n");
+		break;
+	}
+	case 3: {
+		printf("Chuong trinh3\n");
+		break;
+	}
+	case 0: {
+		break;
+	}
+	default:printf("Vui long nhap dung so\n");
+	}
+	printf("Ban co muon tiep tuc truong trinh hay khong?\n1.Co\n0.Khong");
+	scanf("%d",&chon2);
+	system("cls");
+}while(chon2==1);
+}

@@ -1,0 +1,66 @@
+Như đã trao đổi trên lớp với các em. Các em làm các bài này càng nhiều càng tốt, hạn nộp là trước ngày 15/1/2022.
+BÀI TẬP MÔN LẬP TRÌNH C
+Phần 1
+Bài 1: Tính tổng các chữ số của số nguyên dương n
+Bài 2: Kiểm tra xem số n có là số có các chữ số giảm dần hay không, ghi ra Yes nếu có, No nếu không
+Bài 3: Tìm chữ số lớn nhất, nhỏ nhất của số nguyên dương n
+Bài 4: cho 4 số số nguyên a,b,c,d. Tìm hai số có tích lớn nhất
+Bài 5: Cho toạ độ 3 điểm A,B,C tương ứng là (xa,ya), (xb,yb) và (xc,yc) trên mặt phẳng XOY. Kiểm tra xem. ABC có thẳng hàng hay không? Nếu không 3điểm ABC tạo thành tam giác gì?(Đều, cân, vuông cân, vuông, thường)
+Phần 2
+Bài 6: Tính S(n) = ½ + ¾ + 5/6 + … + 2n + 1/ 2n + 2
+Bài 7 :Tính S(n) = 1 + 1.2 + 1.2.3 + … + 1.2.3….N
+Bài 8: Tính S(n) = x + x^2 + x^3 + … + x^n
+Bài 9: Tính S(n) = x + x^2/1 + 2 + x^3/1 + 2 + 3 + … + x^n/1 + 2 + 3 + …. + N
+Bài 10: Tính S(n) = x + x^2/2! + x^3/3! + … + x^n/N!
+Phần 3
+Bài 11: Liệt kê tất cả các ước số của số nguyên dương n
+Bài 12: Tính tổng tất cả các ước số lẻ cuả số nguyên dương n
+Bài 13: Đếm số lượng ước số chẵn của số nguyên dương n
+Bài 14: Tìm số nguyên dương n nhỏ nhất sao cho 1 + 2 + … + n > số k cho trước
+Bài 15: Hãy sử dụng vòng lặp for để xuất tất cả các ký tự từ A đến Z
+Bài 16 Viết chương trình nhập 1 số nguyên có 3 chữ số.  Hãy in ra cách đọc của số nguyên này
+Bài 17: Viết chương trình in bảng cửu chương ra màn hình
+Phần 4
+Bài 18: Cho dãy số nguyên gồm n phần tử. Hãy viết hàm thực hiện các nhiệm vụ sau:
+-      Nhập mảng
+-      Xuất mảng
+-      In ra số lượng các số lớn nhất
+-      In ra số lượng các số nhỏ nhất
+-      In ra các số có 1chữ số
+-      In ra số âm đầu tiên
+-      In ra số dương cuối cùng
+Bài19: : Cho dãy số thực n phần tử. Hãy viết hàm thực hiện các nhiệm vụ sau:
+-      Nhập mảng
+-      Xuất mảng
+-      In ra các số có giá trị nguyên
+-      Kiểm tra xem dãy có tăng dần hay không? Yes nếu có, No nếu không.
+-      Đếm các số dương
+-      Đếm các số âm
+Bài 20: Viết hàm tìm giá trị lớn nhất trong mảng 1 chiều các số thực
+Bài 22: Cho dãy số nguyên gồm n phần tử. Hãy viết hàm thực hiện các nhiệm vụ sau:
+-      In ra các số nguyên tố trong mảng mà nhỏ hơn n
+-      In ta các số chính -phương trong mảng mà lớn hơn n
+Bài 23: Cho chuỗi kí tự không quá 200 kí tự. Hãy lập trình:
+-      Nhập và xuất chuỗi kí tự.
+-      Đếm số chữ số trong chuỗi
+-      Đếm số từ có kí tự đầu là các chữ cái in thường
+-      Đếm số khoảng trắng trong chuỗi
+-      Xoá các khoảng trắng thừa trong chuỗi (có hơn 2 khoảng trắng liên tiếp)
+Bài 24: Cho mảng n số nguyên:
+-      In ra các phần tử khác nhau của mảng
+-      In ra đoạn liên tiếp tăng dần dài nhất của mảng
+-      In ra đoạn liên tiếp có tổng lớn nhất của mảng
+Phần 5
+Bài 25: Mỗi cuốn sách có các thông tin sau:
+-      Tên sách: không quá 20 kí tự
+-      Nhà xuất bản: không qua 50 kí tự
+-      Tên tác giả: không quá 30 kí tự
+-      Giá bán sách: số thực
+-      Số trang: số nguyên
+Hãy viết chương trình:
+-      Nhập vào n cuốn sách
+-      Xuất ra màn hình các cuốn sách đã nhập
+-      In ra cuốn sách có số trang nhiều nhất
+-      In ra cuốn sách có giá tiền thấp nhất
+-      In ra tác giả có nhiều sách nhất
+-      In ra Nhà xuất bản có nhièu sách nhất.

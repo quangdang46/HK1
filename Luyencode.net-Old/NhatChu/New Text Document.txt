@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string s;
+    getline(cin, s);
+    string x="";
+    x+=s[0];
+    for(int i=1;i<s.length();i++){
+        int count =0;
+        for(int j=0;j<x.length();j++){
+            if(s[i]==x[j]){
+                count=1;
+            }
+        }
+        if(count==0){
+            x+=s[i];
+        }
+    }
+    cout<<x;
+}

@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<math.h>
+void demm(int n ) {
+  double a ;
+  for (int i = 1;i<=n;i++) {
+    a = a*10 + 9 ;
+  }
+  int b[15],c[15],N,t = 0,T,dem = 0;
+  double J;
+  for (double i = pow(10,n-1);i<=a;i++) {
+    t = 0;
+    J = i;
+    int h = 0 ;
+    T = n;
+    for (int j = n - 1; j>=0;j-- ) {
+      N = J/pow(10,j);
+      c[h] = N;
+      h ++ ;
+      J = J - N*pow(10,j);
+      b[j] = N;
+    }
+    for (int h = 0;h < n;h++) {
+      if (c[h] == b[h]) {
+        t ++;
+      }
+      if (t == n) {
+        dem ++ ;
+      }
+    }
+  }
+  printf("%d",dem);
+}
+
+int main () {
+  int n;
+  for (int i = 0;i<=pow(10,5);i++) {
+    scanf("%d",&n);
+    demm(n);
+  }
+
+}

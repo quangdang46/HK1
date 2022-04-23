@@ -1,0 +1,21 @@
+1. Viết hàm tính các biểu thức sau:
+2. Viết hàm tìm số lớn nhất của một mảng số nguyên.
+3. Viết hàm tìm số nhỏ nhất của một mảng số nguyên.
+4. Viết hàm tính tổng tất cả các số của một mảng số nguyên.
+5. Viết hàm tính tổng tất cả các số không dương của một mảng số nguyên.
+6. Viết hàm tính tổng tất cả các số chẵn của một mảng số nguyên.
+7. Viết hàm đảo ngược một mảng mà không cần sử dụng bất kỳ mảng tạm thời nào.
+8. Viết chương trình xóa một phần tử khỏi mảng tại vị trí xác định.
+9. Viết chương trình đếm tổng số phần tử trùng lặp trong một mảng.
+10. Viết chương trình xóa tất cả các phần tử trùng lặp khỏi một mảng.
+11. Viết chương trình đếm tần số của từng phần tử trong mảng.
+12. Viết chương trình gộp hai mảng thành mảng thứ ba.
+13. Viết chương trình xếp các phần tử chẵn và lẻ của mảng thành hai mảng mới riêng biệt.
+14. Viết chương trình tìm kiếm một phần tử trong mảng bằng cách cung cấp giá trị khóa.
+15. (*) Viết chương trình sắp xếp các phần tử của mảng theo thứ tự tăng dần.
+16. Viết chương trình cộng hai ma trận.
+17. Viết chương trình trừ hai ma trận.
+18. Viết chương trình nhân hai ma trận.
+19. Viết chương trình kiểm tra hai ma trận có bằng nhau hay không.Ok
+20. Viết chương trình tìm chuyển vị của ma trận.Ok
+21. Viết chương trình tìm định thức của ma trận.

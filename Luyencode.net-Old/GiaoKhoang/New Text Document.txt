@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long min(long long x, long long y){
+    return (x < y) ? x : y;
+}
+int main() {
+    long long a,b,c,d;
+    cin>>a>>b>>c>>d;
+    if(b>=c && a<=d &&(min(a,c)<=min(b,d))){
+        cout<<"YES";
+    }else if(d>=a && c<=b &&(min(a,b)<=min(d,c))){
+        cout<<"YES";
+    }else{
+        cout<<"NO";
+    }
+}

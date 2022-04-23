@@ -1,0 +1,6 @@
+string=[letter for letter in input()]
+list=[]
+for letter in string:
+    if letter not in list:
+        list.append(letter)
+        print(letter,end='')
