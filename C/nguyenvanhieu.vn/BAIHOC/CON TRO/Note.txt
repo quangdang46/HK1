@@ -1,0 +1,10 @@
+Hàm malloc() : cấp phát bộ nhớ
+ptr = (castType*) malloc(size);
+ptr = (float*) malloc(100 * sizeof(float));
+Hàm calloc() : cấp phát bộ nhớ và gán giá trị bằng 0
+ptr = (castType*)calloc(n, size);
+ptr = (float*) calloc(25, sizeof(float));
+Lưu ý: nếu không cấp phát được sẽ trả về giá trị NULL
+Hàm realloc() : hay đổi kích thước của bộ nhớ được cấp phát
+ptr = realloc(ptr, x); 
+Hàm free() : giải phóng bộ nhớfree(ptr);

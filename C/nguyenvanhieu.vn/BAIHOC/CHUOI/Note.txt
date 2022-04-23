@@ -1,0 +1,191 @@
+Hàm tính độ dài chuỗi
+    Khai báo thư viện #include<stdio.h>
+    dùng hàm strlen(chuỗi);
+    //Tính cả kí tự \n  không tính kí tự \0
+Hoặc dùng hàm Function
+    void XoaKhoangTrang(char c[]){
+        int len=strlen(c);
+        if(c[len-1]=='\n'){
+            c[len-1]='\0';
+        }
+    }
+    int NewLenString(char c[]){
+        int cout=0;
+        while(c[cout]!='\0'){
+            cout++;
+        }
+        return cout;
+    }
+    //cout là độ dài chuỗi
+
+
+Hàm nối hai chuỗi
+    Khai báo thư viện string.h
+    dùng hàm strcat(a,b);
+    //Tức là nối chuỗi a và b và đưa vào chuỗi a
+Hoặc dùng hàm Function
+    void Noi2Chuoi(char a[],char b[]){
+        size_t lena=strlen(a);
+        size_t lenb=strlen(b);
+        for(int i=len a;i<lena+lenb;i++){
+            a[i]=a[i-lena];
+        }
+    }
+
+
+Copy chuỗi
+    copy chuỗi b vào chuỗi a
+    dùng hàm strcpy(a,b);
+Hoặc dùng hàm Function
+    // copy chuoi b vao chuoi a
+    void CopyChuoi(char a[],char b[]){
+        size_t lenb=strlen(b);
+        for(int i=0;i<lenb;i++){
+            a[i]=b[i];
+        }
+        a[lenb]='\0';
+    }
+
+
+So sánh hai chuỗi
+    so sánh chuỗi a và b
+    ==>>>dùng thư viện strcmp(a,b);
+    nếu a<b trả ra số âm
+    nếu a>b trả ra số dương
+    nếu a=b trả ra số 0
+Hoặc dùng hàm Function
+    void SoSanhChuoi(char a[],char b[]){
+        size_t lena=strlen(a);
+        size_t lenb=strlen(b);
+        //nếu len a<len b thì trả về lena còn không thì trả về lena
+        // sau đó gán cái trả về cho min
+        size_t min=lena<lenb?lena:lenb;
+        int ketqua =0;
+        for(int i=0;i<min;i++){
+            ketqua=a[i]-b[i];
+            // nếu kết quả khác không thì thoát luôn trả ra ketqua
+            if(ketqua!=0){
+                break;
+            }
+        }
+        //Chuyển đổi về dạng như hàm strcmp()
+        if(ketqua<0){
+            return -1;
+        }else if(ketqua>0){
+            return 1;
+        }else{
+            return 0;
+        }
+        return ketqua;
+    }
+
+Chuyển đổi In Hoa và In thường
+    Sử dụng hàm strupr( );in hoa
+                strlwr( );in thuong
+Hoặc sử dụng hàm Function
+    void ChuyenInHoa(char a[]){
+        for(int i=0;i<strlen(a);i++){
+            if(a[i]>=97&&a[i]<=122){
+                a[i]= a[i]-32;
+                //Chữ hoa từ 65 đến 90
+            }
+        }
+    }
+    void ChuyenChuThuong(char a[]){
+        for(int i=0;i<strlen(a);i++){
+            if(a[i]>=65&&a[i]<=90){
+                a[i]= a[i]+32;
+                //Chữ thuòng từ 97 đến 122
+            }
+        }
+    }
+
+
+In hoa chữ đầu tiên của từ dùng hàm function
+void chuyendoi(char a[]){
+    /*
+    tRan quang
+    |    |
+    x[0] viet hoa
+    x[i-1] neu la space (=32) thi x[i] in hoa
+    */
+    for(int i=0;i<strlen(a);i++){
+        if(i==0||i>0&&a[i-1]==32){
+            if(a[i]>=97&&a[i]<=122){
+                a[i]= a[i]-32;
+            }
+        }
+    }
+}
+
+Đảo ngược chuỗi
+    Dùng hàm strrev( );
+Hoặc sử dụng Function
+    void XoaKiTuTrang(char a[]){
+        size_t lena=strlen(a);
+        if(a[len-1]='\n'){
+            a[len-1]='\0';
+        }
+    }
+    //
+    void DaoNguocChuoi(char a[]){
+        XoaKiTuTrang(a);
+        size_t lena=strlen(a);
+        for(int i=0;i<lena/2;i++){
+            char tmp=a[i];
+            a[i]= a[lena-i-1];
+            a[lena-i-1]=tmp;
+        }
+    }
+
+
+Kiểm tra đối xứng của chuỗi
+Dùng hàm Function
+NOTE==>dùng hàm fget sẽ có kí tự \n vì vậy cần loại bỏ kí tự \n 
+void XoaKiTuTrang(char a[]){
+    size_t len=strlen(a);
+    if(a[len-1]=='\n'){
+        a[len-1]='\0';
+    }
+}
+//Ham kiem tra
+int KiemTraDoiXung(char a[]){
+    size_t len=strlen(a);
+    for(size_t i=0; i<len/2; i++){
+        if(a[i]!=a[len-i-1]){
+            return 0;
+        }
+    }
+    return 1;
+}
+//
+int main(){
+......
+    if(KiemTraDoiXung(a)){
+        printf("\nDay la chuoi doi xung!");
+    }else{
+        printf("\nDay khong doi xung!");
+    }
+}
+
+Tìm Chuỗi Con
+Sử dụng Hàm có sẵn trong thư viện string.h
+    strstr(a,b);kiểm tra chuỗi b có trong a không
+    nếu không  trả ra kq NULL
+
+void XoaKiTuTrang(char a[]){
+    size_t len = strlen(a);
+    if(a[len-1] == '\n'){
+        a[len-1] = '\0';
+    }
+}
+int main(){
+.......
+char *kq=strstr(a,b);
+    if(kq!=NULL){
+        printf("\nTim thay");
+    }else{
+        printf("\nKhong tim thay");
+    }
+}
+}

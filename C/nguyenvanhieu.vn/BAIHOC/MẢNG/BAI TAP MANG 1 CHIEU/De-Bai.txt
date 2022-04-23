@@ -1,0 +1,9 @@
+Bài tập: Nhập vào từ bàn phím mång so nguyên gồm n phần tử
+1. Tính trung bình cộng các số lẻ ở vị trí chẵn
+2. Tìm số lớn nhất trong mång vừa nhập.OK
+3. Tìm vị trí các số nhỏ nhất trong mång.OK
+4. Đếm các số chính phương có trong mảng
+5. Hiển thị các số nguyên tố có trong mảng lên MH OK
+6. Thay the các phần tử âm có trong mång
+7. Xóa các phần tử âm có trong mång
+8. Sắp xếp mảng đã nhập theo chiều tăng dần

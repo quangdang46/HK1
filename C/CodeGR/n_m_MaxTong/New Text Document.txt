@@ -1,0 +1,28 @@
+giải giúp: cho trước 2 số n và m (N <M), tìm một số trong khoảng từ n đến m sao cho tổng các chữ số của nó là lớn nhất.
+
+
+#include<iostream>
+#include<limits.h>
+using namespace std;
+int TongSo(int n){
+    int sum = 0;
+    while(n!=0){
+        sum+=n%10;
+        n/=10;
+    }
+    return sum;
+}
+int main(){
+    int n,m;
+    cout<<"Nhap n<m: ";
+    cin >> n >>m;
+    int max=INT_MIN;
+    int a;
+    for(int i=n;i<= m; i++){
+        if(TongSo(i)>max){
+            max=TongSo(i);
+            a=i;
+        }
+    }
+    cout<<"So thoa man dieu kien:"<<a;
+}

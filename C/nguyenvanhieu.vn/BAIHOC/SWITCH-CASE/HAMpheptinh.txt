@@ -1,0 +1,25 @@
+
+// phep Cong
+int cong(int a, int b){
+    return a+b;
+}
+//
+//phep tru
+int tru(int a, int b){
+    return a-b;
+}
+//
+//phep nhan
+int nhan(int a, int b){
+    return a*b;
+}
+//
+//phep chia
+float chia(int a, int b){
+    if(b==0){
+        printf("\nmoi ban nhap lai b= ");
+    }else{
+        return (float)a/b;
+    }
+}
+//

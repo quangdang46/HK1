@@ -1,0 +1,17 @@
+void vitri(int arr[],int &n,int k){
+    for(int i=k;i<n-1;i++){
+        arr[i] = arr[i+1];
+    }
+    n-=1;
+}
+//Tim phan tu k co trong mang va xoa
+void XoaMangGiaTring(int arr[],int &n){
+    int gt;
+    printf("\nNhap gia tri n: ");
+    scanf("%d", &n);
+    for(int i=0;i<n;i++){
+        if(arr[i]==gt){
+            vitri(arr,n,i);
+        }
+    }
+}

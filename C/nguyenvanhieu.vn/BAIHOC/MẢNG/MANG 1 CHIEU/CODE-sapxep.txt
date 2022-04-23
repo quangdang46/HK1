@@ -1,0 +1,28 @@
+//SAP XEP MANG TANG DAN
+void sapxeptang(int arr[],int n){
+    int i,j;
+    for(i=0;i<(n-1);i++){
+        for(j=(n-1);j>=i;j--){
+            if(arr[j]<arr[j-1]){
+                int tmp;
+                tmp=arr[j];
+                arr[j] = arr[j-1];
+                tmp=arr[j-1];
+            }
+        }
+    }
+}
+//SAP XEP giam
+void sapxepgiam(int arr[],int n){
+    int i,j;
+    for(i=0;i<(n-1);i++){
+        for(j=(n-1);j>=i;j--){
+            if(arr[j]>arr[j-1]){
+                int tmp;
+                tmp=arr[j];
+                arr[j] = arr[j-1];
+                tmp=arr[j-1];
+            }
+        }
+    }
+}

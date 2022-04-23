@@ -1,0 +1,34 @@
+//https://www.youtube.com/watch?v=sK7dmKzLEZ8
+1.chèn phần tử vào vị trí m vào cuối dãy
+void chenvaocuoimang(int arr[],int &n,int m ){
+    int size=sizeof(arr)/sizeof(arr[0]);
+    if(n==size){
+        printf("Khong the them vai duoc nua ");
+    }
+    arr[n]=m;
+    n++;
+}
+2.Chèn phần tử vào đầu mảng
+void chenvaocuoimang(int arr[],int &n,int m ){
+    int size=sizeof(arr)/sizeof(arr[0]);
+    if(n==size){
+        printf("Khong the them vai duoc nua ");
+    }
+    n++;
+    for(int i=1;i<n;i++){
+        arr[i]= arr[i-1];
+    }
+    arr[0]=m;
+}
+3.Thêm vào vị trí k
+void chenvaocuoimang(int arr[],int &n,int m ){
+    int size=sizeof(arr)/sizeof(arr[0]);
+    if(n==size){
+        printf("Khong the them vai duoc nua ");
+    }
+    n++;
+    for(int i=n-1;i>k;i++){
+        arr[i]= arr[i-1];
+    }
+    arr[k]=m;
+}

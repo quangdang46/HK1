@@ -1,0 +1,214 @@
+Sắp xếp dãy số theo thứ tự tăng dần hay giảm dần là 1 bài toán sắp xếp đơn giản và cơ bản nhất đối với bất cứ ai học lập trình. Nói theo cách khác, bài toán này chính là bài toán sắp xếp mảng 1 chiều tăng dần/giảm dần. Bài toán sắp xếp dãy số là bài tập điển hình trong phần kiến thức về mảng 1 chiều. Sắp xếp cũng là một kiến thức quan trọng thuộc phần giải thuật trong cấu trúc dữ liệu & giải thuật. Trong bài viết này, Lập trình không khó sẽ cùng các bạn giải quyết bài toán sắp xếp mảng 1 chiều tăng dần và giảm dần.
+
+NỘI DUNG BÀI VIẾT	
+1. Dãy số hay là mảng?
+2. Sắp xếp dãy số giảm dần
+3. Sắp xếp dãy số tăng dần
+4. Sắp xếp dãy số tăng, giảm dần với hàm
+1. Dãy số hay là mảng?
+Khi bạn làm bài tập lập trình mà có các cụm từ khóa sau:
+
+Sắp xếp dãy số tự nhiên tăng dần/giảm dần
+Sắp xếp mảng số thực tăng dần/ giảm dần
+Sắp xếp mảng 1 chiều các số tự nhiên tăng/giảm dần
+Thì cả 3 đề bài này đều là bài toán sắp xếp dữ liệu trên mảng 1 chiều. Khi nhắc tới “dãy số” thì bạn phải nghĩ ngay tới mảng 1 chiều. Dưới đây là 1 số lưu ý tham khảo trước khi tiếp tục đọc bài viết này:
+
+Bạn cần có kiến thức về mảng 1 chiều để có thể hiểu bài viết này, xem tại: Mảng 1 chiều
+Có rất nhiều thuật toán sắp xếp khác nhau, tham khảo thêm tại: thuật toán sắp xếp
+Tổng hợp bài tập mảng 1 chiều có lời giải: Bài tập mảng 1 chiều có lời giải
+2. Sắp xếp dãy số giảm dần
+Trong code mà mình cung cấp dưới đây thì mình sẽ dùng thuật toán sắp xếp chọn – một thuật toán sắp xếp dễ hiểu và dễ cài đặt nhất.
+
+Xem hình dưới đây để hiểu ý tưởng sắp xếp, xem chi tiết tại bài thuật toán sắp xếp chọn
+
+Sắp xếp dãy số tăng dần
+Code sắp xếp mảng/ dãy số giảm dần với C/C++:
+#include <stdio.h>
+ 
+int main(){
+    int a[100];
+    int n;
+    printf("\nNhap so luong phan tu n = ");
+    do{
+        scanf("%d", &n);
+        if(n <= 0){
+            printf("\nNhap lai n = ");
+        }
+    }while(n <= 0);
+    
+    for(int i = 0; i < n; i++){
+        printf("\nNhap a[%d] = ",i);
+        scanf("%d", &a[i]);
+    }
+    
+    // Sap xep dung thuat toan sap xep chon
+    int tg;
+    for(int i = 0; i < n - 1; i++){
+        for(int j = i + 1; j < n; j++){
+            if(a[i] < a[j]){
+                // Hoan vi 2 so a[i] va a[j]
+                tg = a[i];
+                a[i] = a[j];
+                a[j] = tg;        
+            }
+        }
+    }
+    
+    
+    printf("\nMang da sap xep la: ");
+    for(int i = 0; i < n; i++){
+        printf("%5d", a[i]);
+    }
+    
+    
+}
+ 
+Chạy thử:
+
+Nhap so luong phan tu n = 5
+ 
+Nhap a[0] = 1
+ 
+Nhap a[1] = 3
+ 
+Nhap a[2] = 2
+ 
+Nhap a[3] = 4
+ 
+Nhap a[4] = 5
+ 
+Mang da sap xep la:     5    4    3    2    1
+ 
+3. Sắp xếp dãy số tăng dần
+Việc sắp xếp dãy số tăng dần chỉ khác sắp xếp giảm dần duy nhât ở bước kiểm tra điều kiện để hoán vị.
+#include <stdio.h>
+ 
+int main(){
+    int a[100];
+    int n;
+    printf("\nNhap so luong phan tu n = ");
+    do{
+        scanf("%d", &n);
+        if(n <= 0){
+            printf("\nNhap lai n = ");
+        }
+    }while(n <= 0);
+    
+    for(int i = 0; i < n; i++){
+        printf("\nNhap a[%d] = ",i);
+        scanf("%d", &a[i]);
+    }
+    
+    // Sap xep dung thuat toan sap xep chon
+    int tg;
+    for(int i = 0; i < n - 1; i++){
+        for(int j = i + 1; j < n; j++){
+            if(a[i] > a[j]){
+                // Hoan vi 2 so a[i] va a[j]
+                tg = a[i];
+                a[i] = a[j];
+                a[j] = tg;        
+            }
+        }
+    }
+    
+    
+    printf("\nMang da sap xep la: ");
+    for(int i = 0; i < n; i++){
+        printf("%5d", a[i]);
+    }
+    
+    
+}
+ 
+Kết quả chạy thử:
+Nhap a[0] = 1
+ 
+Nhap a[1] = 2
+ 
+Nhap a[2] = 4
+ 
+Nhap a[3] = 3
+ 
+Nhap a[4] = 5
+ 
+Mang da sap xep la:     1    2    3    4    5
+ 
+4. Sắp xếp dãy số tăng, giảm dần với hàm
+Việc dùng hàm sẽ giúp code của chúng ta rõ ràng, sạch sẽ và cũng dễ quản lý, nâng cấp. Với bài toán này, chúng ta có thể viết 4 hàm riêng biệt sau:
+
+void NhapMang(int a[], int n)
+void XuatMang(int a[], int n)
+void TangDan(int a[], int n)
+void GiamDan(int a[], int n)
+
+#include <stdio.h>
+ 
+void NhapMang(int a[], int n){
+    for(int i = 0; i < n; i++){
+        printf("\nNhap a[%d] = ",i);
+        scanf("%d", &a[i]);
+    }
+}
+ 
+void XuatMang(int a[], int n){
+    for(int i = 0; i < n; i++){
+        printf("%5d", a[i]);
+    }
+}
+ 
+void TangDan(int a[], int n){
+    int tg;
+    for(int i = 0; i < n - 1; i++){
+        for(int j = i + 1; j < n; j++){
+            if(a[i] > a[j]){
+                // Hoan vi 2 so a[i] va a[j]
+                tg = a[i];
+                a[i] = a[j];
+                a[j] = tg;        
+            }
+        }
+    }
+}
+ 
+void GiamDan(int a[], int n){
+    int tg;
+    for(int i = 0; i < n - 1; i++){
+        for(int j = i + 1; j < n; j++){
+            if(a[i] < a[j]){
+                // Hoan vi 2 so a[i] va a[j]
+                tg = a[i];
+                a[i] = a[j];
+                a[j] = tg;        
+            }
+        }
+    }
+}
+ 
+int main(){
+    int a[100];
+    int n;
+    printf("\nNhap so luong phan tu n = ");
+    do{
+        scanf("%d", &n);
+        if(n <= 0){
+            printf("\nNhap lai n = ");
+        }
+    }while(n <= 0);
+    
+    NhapMang(a, n);
+    
+    printf("\nMang vua nhap la: ");
+    XuatMang(a, n);
+    
+    // Sap xep tang dan:
+    TangDan(a, n);
+    printf("\nMang sap xep tang dan la: ");
+    XuatMang(a, n);
+    
+    // Sap xep giam dan:
+    GiamDan(a, n);
+    printf("\nMang sap xep giam dan la: ");
+    XuatMang(a, n);
+    
+}

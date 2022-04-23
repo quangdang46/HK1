@@ -1,0 +1,2 @@
+
+    nhapN(city,n);

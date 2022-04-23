@@ -1,0 +1,3 @@
+              Ho Ten   GT Tuoi        DT        DL        DH       DTB
+     tran quang dang  nam   18 10.000000 10.000000 10.000000 10.000000
+    tran quang quang  nam   46 10.000000 10.000000 10.000000 10.000000

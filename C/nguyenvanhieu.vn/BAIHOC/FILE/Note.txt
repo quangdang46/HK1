@@ -1,0 +1,31 @@
+void XuatFile(int x[],int n,char ten[20]){
+    FILE *f = fopen(ten,"w");
+    if(f==NULL){
+        printf("\nError");
+    }
+    for(int i=0; i <n; i++){
+        fprintf(f,"%d\n",x[i]);
+    }
+    fclose(f);
+}
+void DocFile(int x[],int &n,char ten[20]){
+    FILE *f = fopen(ten,"r");
+    if(f==NULL){
+        printf("\nError");
+    }
+    fscanf(f,"%d",&n);
+    for(int i=0; i <n; i++){
+        fscanf(f,"%d\n",&x[i]);
+    }
+    fclose(f);
+}
+void DocFile2(int x[],int &n,char ten[20]){
+    FILE *f = fopen(ten,"r");
+    int i=0;
+    while(!feof(f)){
+        fscanf(f,"%d",&x[i]);
+        i++;
+    }
+    n=i;
+    fclose(f);
+}
